@@ -10,14 +10,14 @@ set :scm, :gitcopy
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
-server 'codetest.test.mobi',
-	  user: 'user',
+server 'codetest.pota.mobi',
+	  user: 'codetest',
 	    roles: %w{web},
 	    ssh_options: {
 		      	port: 2222
 	    }
 
 	    set :branch, 'master'
-	    set :deploy_to, '/home/user/samson_test'
+	    set :deploy_to, '/home/user/codetest'
 
 	    after "deploy:symlink:release", "deploy:fix_file_permissions"
