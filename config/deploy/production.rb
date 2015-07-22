@@ -18,6 +18,6 @@ server 'codetest.pota.mobi',
 	    }
 
 	    set :branch, 'master'
-	    set :deploy_to, '/home/user/codetest'
+	    set :deploy_to, '/home/codetest/samson_test'
 
 	    after "deploy:symlink:release", "deploy:fix_file_permissions"
