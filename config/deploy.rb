@@ -1,8 +1,8 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'my_app_name'
-set :repo_url, 'git@example.com:me/my_repo.git'
+set :application, 'samson_test'
+set :repo_url, 'git@github.com:qualia021test/samson_test.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -32,17 +32,13 @@ set :repo_url, 'git@example.com:me/my_repo.git'
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
-# set :keep_releases, 5
+set :keep_releases, 5
 
 namespace :deploy do
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-
+	task :fix_file_permissions do
+		on roles(:web) do
+			dir = fetch(:deploy_to)
+			execute "chmod -R g-w #{dir}"
+		end
+	end
 end
